@@ -19,6 +19,9 @@ const tours = [
   { name: 'Cusco Místico', label: 'Cultura & Naturaleza', duration: '1 día', difficulty: 'Fácil', altitude: '3,600 m s. n. m.', image: 'assets/images/cusco-mistico.png', desc: 'Una experiencia diferente entre esculturas, naturaleza y cultura cusqueña.', places: 'Cusco, Morada de los Dioses, Valle de los Duendes y Humedal de Huasao' },
   { name: 'Morada de los Dioses en Cuatrimotos', label: 'Aventura + Cultura', duration: '1 día', difficulty: 'Fácil', altitude: '3,600 m s. n. m.', image: 'assets/images/morada-dioses-cuatrimotos.png', desc: 'Recorre rutas de aventura y paisajes de Cusco en cuatrimoto.', places: 'Cusco, Morada de los Dioses, Valle de los Duendes y Bosque de los Ents' },
   { name: '7 Lagunas Ausangate', label: 'Trekking & Naturaleza', duration: '1 día', difficulty: 'Alta', altitude: '3,500 m s. n. m.', image: 'assets/images/7-lagunas-ausangate.png', desc: 'Camina entre lagunas de intenso color turquesa y paisajes de Ausangate.', places: 'Cusco, Pacchanta, 7 Lagunas y baños termales' },
+  { name: 'City Tour Lima', label: 'Cultura & Ciudad', duration: '1 día', difficulty: 'Fácil', altitude: '150 m s. n. m.', image: 'assets/images/city-tour-lima.webp', desc: 'Descubre la Ciudad de los Reyes entre historia, arte, monumentos y vistas de Lima.', places: 'Recojo en hotel, Centro Histórico, Plaza Mayor, Catacumbas de San Francisco, Parque del Amor y Miraflores' },
+  { name: 'Islas Ballestas y Huacachina', label: 'Mar & Aventura', duration: '1 día', difficulty: 'Media', altitude: '400 m s. n. m.', image: 'assets/images/islas-ballestas-huacachina.webp', desc: 'Del desierto al mar en una sola jornada: Paracas, Islas Ballestas, Huacachina y buggys.', places: 'Recojo en hotel, Paracas, Islas Ballestas, Huacachina, paseo en buggys y sandboarding, retorno a Lima' },
+  { name: 'Sobrevuelo Líneas de Nazca', label: 'Experiencia aérea', duration: '1 día', difficulty: 'Alta', altitude: '520 m s. n. m.', image: 'assets/images/sobrevuelo-lineas-nazca.webp', desc: 'Contempla los enigmas del desierto desde el aire en un sobrevuelo por las Líneas de Nazca.', places: 'Recojo en hotel, traslado a aeródromo, charla de seguridad, inicio de sobrevuelo, observación de figuras y retorno a Lima' },
   { name: 'Valle Sur', label: 'Cultura & Historia', duration: '1 día', difficulty: 'Alta', altitude: '3,500 m s. n. m.', image: 'assets/images/valle-sur.png', desc: 'Descubre destinos históricos y culturales al sur de Cusco.', places: 'Cusco, Tipón, Pikillacta y Andahuaylillas' }
 ].map(tour => ({ ...tour, image: tour.image.replace(/\.png$/, '.webp'), message: `Hola, AURIT´IKA EXPERIENCE. Quiero información y disponibilidad para el tour ${tour.name}. ¿Me pueden ayudar, por favor?` }));
 const faq = [
@@ -45,7 +48,7 @@ function getTourCategories(tour) {
   return categories;
 }
 const tourPages = {
-  'City Tour Cusco':'city-tour-cusco','Valle Sagrado VIP':'valle-sagrado-vip','Valle Sagrado Tradicional':'valle-sagrado-tradicional','Machu Picchu':'machu-picchu','Laguna Humantay':'laguna-humantay','Montaña de 7 Colores':'montana-7-colores','Montaña de Colores en Cuatrimotos':'montana-colores-cuatrimotos','Qeswachaka + 4 Lagunas':'qeswachaka-4-lagunas','Waqrapukara':'waqrapukara','Glaciar de Quelccaya':'glaciar-quelccaya','Pallay Punchu':'pallay-punchu','Cusco Místico':'cusco-mistico','Morada de los Dioses en Cuatrimotos':'morada-dioses-cuatrimotos','7 Lagunas Ausangate':'7-lagunas-ausangate','Valle Sur':'valle-sur'
+  'City Tour Cusco':'city-tour-cusco','Valle Sagrado VIP':'valle-sagrado-vip','Valle Sagrado Tradicional':'valle-sagrado-tradicional','Machu Picchu':'machu-picchu','Laguna Humantay':'laguna-humantay','Montaña de 7 Colores':'montana-7-colores','Montaña de Colores en Cuatrimotos':'montana-colores-cuatrimotos','Qeswachaka + 4 Lagunas':'qeswachaka-4-lagunas','Waqrapukara':'waqrapukara','Glaciar de Quelccaya':'glaciar-quelccaya','Pallay Punchu':'pallay-punchu','Cusco Místico':'cusco-mistico','Morada de los Dioses en Cuatrimotos':'morada-dioses-cuatrimotos','7 Lagunas Ausangate':'7-lagunas-ausangate','City Tour Lima':'city-tour-lima','Islas Ballestas y Huacachina':'islas-ballestas-huacachina','Sobrevuelo Líneas de Nazca':'sobrevuelo-lineas-nazca','Valle Sur':'valle-sur'
 };
 function renderTours(filter = 'all') {
   const visibleTours = tours.map((tour, index) => ({ tour, index })).filter(({ tour }) => filter === 'all' || getTourCategories(tour).includes(filter));
@@ -58,6 +61,18 @@ document.querySelectorAll('.tour-filter').forEach(button => button.addEventListe
 }));
 const faqList = document.querySelector('#faq-list');
 faqList.innerHTML = faq.map(([q, a]) => `<article class="faq-item"><button class="faq-question" aria-expanded="false">${q}<b>+</b></button><div class="faq-answer"><p>${a}</p></div></article>`).join('');
+const faqSchema = document.createElement('script');
+faqSchema.type = 'application/ld+json';
+faqSchema.textContent = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(([question, answer]) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer }
+  }))
+});
+document.head.appendChild(faqSchema);
 document.querySelectorAll('.faq-question').forEach(button => button.addEventListener('click', () => { const item = button.parentElement; document.querySelectorAll('.faq-item.open').forEach(open => { if (open !== item) { open.classList.remove('open'); open.querySelector('button').setAttribute('aria-expanded', 'false') } }); item.classList.toggle('open'); button.setAttribute('aria-expanded', item.classList.contains('open')); }));
 const header = document.querySelector('#header'); window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 25));
 const menu = document.querySelector('.nav'), toggle = document.querySelector('.menu-toggle'); toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open')); document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : ''; }); menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '' }));
