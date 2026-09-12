@@ -1,3 +1,4 @@
+﻿@font-face{font-family:Montserrat;src:url('assets/fonts/font-0.woff') format('woff');font-style:normal;font-weight:400;font-display:swap}@font-face{font-family:Montserrat;src:url('assets/fonts/font-5.woff') format('woff');font-style:normal;font-weight:900;font-display:swap}@font-face{font-family:'Playfair Display';src:url('assets/fonts/font-6.woff') format('woff');font-style:italic;font-weight:600;font-display:swap}
 :root {
     --navy: #011a39;
     --gold: #dcae4f;
@@ -51,6 +52,46 @@ h1 em {
 a {
     color: inherit;
     text-decoration: none
+}
+
+.icon,
+.icon svg {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle
+}
+
+.icon svg,
+.feature-icon svg,
+.back-top svg,
+.modal-close svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8
+}
+
+.icon-arrow {
+    margin-left: 5px
+}
+
+.icon-down {
+    width: 22px;
+    height: 22px
+}
+
+.feature-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px
+}
+
+.feature-icon svg {
+    width: 25px;
+    height: 25px
 }
 
 .skip {
@@ -128,6 +169,21 @@ a {
     color: var(--gold)
 }
 
+.soon-link {
+    position: relative
+}
+
+.soon-link small {
+    position: absolute;
+    left: 50%;
+    bottom: -18px;
+    transform: translateX(-50%);
+    color: var(--gold);
+    font-size: 7px;
+    letter-spacing: .04em;
+    white-space: nowrap
+}
+
 .nav-cta {
     padding: 12px 15px;
     background: var(--gold);
@@ -158,8 +214,13 @@ a {
 }
 
 .hero-image {
-    background: url('https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=2200&q=90') center/cover;
+    background: url('assets/images/machu-picchu.webp') center/cover;
     animation: ken 16s ease-in-out infinite alternate
+}
+
+.hero-image.is-changing {
+    opacity: .2;
+    transition: opacity .35s ease
 }
 
 .hero-shade {
@@ -429,6 +490,69 @@ a {
     transform: translateY(-4px)
 }
 
+.catalog-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 42px
+}
+
+.catalog {
+    margin-top: 70px;
+    padding-top: 55px;
+    border-top: 1px solid #dfe3e5
+}
+
+.catalog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 25px;
+    margin-bottom: 24px
+}
+
+.catalog-head h3 {
+    margin: 0;
+    font-size: 28px
+}
+
+.catalog-head input {
+    width: min(420px, 100%);
+    border: 1px solid #d9dee3;
+    padding: 14px 16px;
+    color: var(--navy);
+    font: 500 12px Montserrat
+}
+
+.catalog-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 28px
+}
+
+.catalog-category {
+    cursor: pointer;
+    border: 1px solid #d9dee3;
+    background: #fff;
+    color: var(--navy);
+    padding: 10px 14px;
+    font: 700 10px Montserrat;
+    text-transform: uppercase;
+    letter-spacing: .06em
+}
+
+.catalog-category.active,
+.catalog-category:hover {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy)
+}
+
+.catalog-empty {
+    color: var(--gray);
+    grid-column: 1 / -1
+}
+
 .tour-photo {
     height: 275px;
     position: relative;
@@ -530,7 +654,7 @@ a {
 .machu-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, #011a39e8, #011a3970), url('https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&w=2100&q=85') center/cover
+    background: linear-gradient(90deg, #011a39e8, #011a3970), url('assets/images/machu-picchu.webp') center/cover
 }
 
 .machu-inner {
@@ -795,7 +919,7 @@ a {
 .final-cta {
     padding: 130px max(5vw, 24px);
     color: #fff;
-    background: linear-gradient(90deg, #011a39e8, #011a3975), url('https://images.unsplash.com/photo-1531968455001-5c5272a41129?auto=format&fit=crop&w=2100&q=85') center/cover
+    background: linear-gradient(90deg, #011a39e8, #011a3975), url('assets/images/city-tour-lima.webp') center/cover
 }
 
 .final-cta>div {
@@ -906,6 +1030,47 @@ footer {
     font-size: 9px
 }
 
+.footer-detail {
+    line-height: 1.9
+}
+
+.back-top {
+    position: fixed;
+    z-index: 7;
+    right: 25px;
+    bottom: 92px;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #dcae4f;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--navy);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    font-size: 19px;
+    box-shadow: 0 5px 16px #00142e22;
+    transition: .2s
+}
+
+.back-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0)
+}
+
+.back-top svg {
+    width: 17px;
+    height: 17px
+}
+
+.back-top:hover {
+    background: var(--gold);
+    transform: translateY(-2px)
+}
+
 .whatsapp {
     position: fixed;
     z-index: 8;
@@ -956,6 +1121,11 @@ footer {
 
 .whatsapp:hover:before {
     animation-play-state: paused
+}
+
+.modal-close svg {
+    width: 18px;
+    height: 18px
 }
 
 @keyframes whatsapp-pulse {
@@ -1281,6 +1451,21 @@ footer {
         margin-top: 15px
     }
 
+    .soon-link small {
+        position: static;
+        display: inline-block;
+        margin-left: 7px;
+        transform: none
+    }
+
+    .catalog-head {
+        display: block
+    }
+
+    .catalog-head input {
+        margin-top: 20px
+    }
+
     .reasons {
         grid-template-columns: 1fr 1fr
     }
@@ -1360,6 +1545,11 @@ footer {
     .whatsapp {
         right: 17px;
         bottom: 17px
+    }
+
+    .back-top {
+        right: 18px;
+        bottom: 84px
     }
 
     .whatsapp i {

@@ -1,4 +1,4 @@
-const WHATSAPP = '51927895331';
+﻿const WHATSAPP = '51927895331';
 const tours = {
   'city-tour-cusco': ['City Tour Cusco','Cultura & Historia','1 día','Fácil','3,500 m s. n. m.','city-tour-cusco.png','Recorre los principales atractivos históricos y arqueológicos de Cusco, combinando ciudad, cultura andina y vestigios incas.','Cusco, Qorikancha, Sacsayhuamán, Qenqo, Puca Pucara y Tambomachay'],
   'valle-sagrado-vip': ['Valle Sagrado VIP','Experiencia VIP','Full Day','Fácil','3,800 m s. n. m.','valle-sagrado-vip.png','Una experiencia premium por paisajes, arqueología y cultura del Valle Sagrado.','Cusco, Chinchero, Maras, Moray, Ollantaytambo y Pisac'],
@@ -42,7 +42,7 @@ const serviceInfo = {
 const slug = document.body.dataset.tour;
 const [name,label,duration,difficulty,altitude,image,description,places,useOriginalImage] = tours[slug];
 const heroImage = useOriginalImage ? image : image.replace(/\.png$/, '.webp');
-document.title = `${name} | AURIT´IKA EXPERIENCE`;
+document.title = `${name} | WAYNA INKA PERÚ AGENCY`;
 const details = serviceInfo[slug];
 const route = places.split(', ').map((place,index) => `<div data-step="${String(index + 1).padStart(2,'0')}">${place}</div>`).join('');
 const includes = details.includes.map(item => `<li>${item}</li>`).join('');
@@ -59,9 +59,9 @@ const structuredData = {
   touristType: 'Travelers',
   provider: {
     '@type': 'TravelAgency',
-    name: 'AURIT´IKA EXPERIENCE',
+    name: 'WAYNA INKA PERÚ AGENCY',
     telephone: '+51 927 895 331',
-    email: 'Agenciadeviajesauritika@gmail.com'
+    email: 'info@waynainka.pe'
   },
   itinerary: places.split(', ').map((place, index) => ({
     '@type': 'TouristAttraction',
@@ -73,4 +73,5 @@ const schemaScript = document.createElement('script');
 schemaScript.type = 'application/ld+json';
 schemaScript.textContent = JSON.stringify(structuredData);
 document.head.appendChild(schemaScript);
-document.querySelector('#tour-page').innerHTML = `<section class="hero" style="background-image:url('../assets/images/${heroImage}')"><div><p class="eyebrow">${label}</p><h1>${name}</h1><p>Una experiencia auténtica por el Perú.</p></div></section><section class="content"><div><h2>Descubre ${name}</h2><p>${description}</p><div class="facts"><span><b>Duración:</b> ${duration}</span><span><b>Dificultad:</b> ${difficulty}</span><span><b>Altitud máxima:</b> ${altitude}</span></div><h2>Ruta de la experiencia</h2><div class="route">${route}</div><div class="guide-grid"><section><h3 class="good">Incluye</h3><ul>${includes}</ul></section><section><h3 class="no">No incluye</h3><ul>${excludes}</ul></section></div><h2>Recomendaciones</h2><p>Lleva ropa adecuada para el clima, agua, protector solar y consulta con nuestro equipo cualquier requerimiento especial antes de viajar. Para rutas de altura, considera uno o dos días de aclimatación en Cusco.</p></div><aside class="side"><p class="eyebrow">AURIT´IKA EXPERIENCE</p><h2>¿Quieres vivir esta experiencia?</h2><p>Consulta disponibilidad, itinerario y detalles para tu fecha de viaje.</p><a class="button" target="_blank" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hola, AURIT´IKA EXPERIENCE. Quiero información y disponibilidad para el tour ${name}. ¿Me pueden ayudar, por favor?`)}">Consultar por WhatsApp</a></aside></section>`;
+document.querySelector('#tour-page').innerHTML = `<section class="hero" style="background-image:url('../assets/images/${heroImage}')"><div><p class="eyebrow">${label}</p><h1>${name}</h1><p>Una experiencia auténtica por el Perú.</p></div></section><section class="content"><div><h2>Descubre ${name}</h2><p>${description}</p><div class="facts"><span><b>Duración:</b> ${duration}</span><span><b>Dificultad:</b> ${difficulty}</span><span><b>Altitud máxima:</b> ${altitude}</span></div><h2>Ruta de la experiencia</h2><div class="route">${route}</div><div class="guide-grid"><section><h3 class="good">Incluye</h3><ul>${includes}</ul></section><section><h3 class="no">No incluye</h3><ul>${excludes}</ul></section></div><h2>Recomendaciones</h2><p>Lleva ropa adecuada para el clima, agua, protector solar y consulta con nuestro equipo cualquier requerimiento especial antes de viajar. Para rutas de altura, considera uno o dos días de aclimatación en Cusco.</p></div><aside class="side"><p class="eyebrow">WAYNA INKA PERÚ AGENCY</p><h2>¿Quieres vivir esta experiencia?</h2><p>Consulta disponibilidad, itinerario y detalles para tu fecha de viaje.</p><a class="button" target="_blank" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hola, WAYNA INKA PERÚ AGENCY. Quiero información y disponibilidad para el tour ${name}. ¿Me pueden ayudar, por favor?`)}">Consultar por WhatsApp</a></aside></section>`;
+
