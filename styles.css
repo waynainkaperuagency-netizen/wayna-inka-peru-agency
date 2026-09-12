@@ -498,9 +498,9 @@ a {
 .carousel-control {
     position: absolute;
     z-index: 2;
-    top: 50%;
-    width: 54px;
-    height: 54px;
+    top: 298px;
+    width: 48px;
+    height: 48px;
     display: grid;
     place-items: center;
     border: 1px solid #d9dee3;
@@ -700,11 +700,13 @@ a {
 }
 
 .tour-body {
-    padding: 20px
+    padding: 46px 20px 20px
 }
 
 .tour-meta {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 13px;
     color: var(--gray);
     font-size: 9px;
@@ -1603,12 +1605,15 @@ footer {
 
     .featured-carousel .tour-grid {
         padding-right: 18px;
-        touch-action: pan-x;
+        touch-action: pan-x pan-y;
         -webkit-overflow-scrolling: touch
     }
 
     .carousel-control {
-        display: none
+        display: grid;
+        top: 278px;
+        width: 44px;
+        height: 44px
     }
 
     .machu-inner {
