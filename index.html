@@ -112,7 +112,7 @@
     .tip-card {
       background: #fff;
       padding: 31px;
-      border-left: 4px solid #dcae4f
+      border: 2px solid #dcae4f
     }
 
     .tip-card b {
@@ -243,13 +243,12 @@
         </div>
         <p>Del corazón de Cusco a las montañas más impresionantes de los Andes.</p>
       </div>
-      <div class="tour-grid" id="tour-grid"></div>
-      <div class="catalog-actions"><button class="button navy" id="catalog-open" type="button">Ver todos los tours y paquetes <span>→</span></button></div>
-      <section class="catalog" id="catalogo" hidden>
-        <div class="catalog-head"><div><p class="eyebrow">Encuentra tu próxima experiencia</p><h3>Todos los tours</h3></div><input id="tour-search" type="search" placeholder="Buscar por destino o actividad" aria-label="Buscar tours"></div>
-        <div class="catalog-categories" aria-label="Categorías de tours"><button class="catalog-category active" type="button" data-catalog-filter="all">Todos</button><button class="catalog-category" type="button" data-catalog-filter="cultura">Cultura</button><button class="catalog-category" type="button" data-catalog-filter="aventura">Aventura</button><button class="catalog-category" type="button" data-catalog-filter="trekking">Trekking</button><button class="catalog-category" type="button" data-catalog-filter="lima">Lima y costa</button></div>
-        <div class="tour-grid catalog-grid" id="catalog-grid"></div>
-      </section>
+      <div class="featured-carousel">
+        <button class="carousel-control carousel-prev" id="featured-prev" type="button" aria-label="Tour anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <div class="tour-grid" id="tour-grid"></div>
+        <button class="carousel-control carousel-next" id="featured-next" type="button" aria-label="Siguiente tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="catalog-actions"><a class="button navy" href="tours.html">Ver todos los tours y paquetes <span class="icon icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a></div>
     </section>
     <section class="altitude-tips section" aria-labelledby="tips-title">
       <div class="section-head center reveal">

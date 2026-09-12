@@ -1,0 +1,33 @@
+const WHATSAPP_NUMBER = '51927895331';
+const tours = [
+  ['City Tour Cusco','Cultura & Historia','1 día','Fácil','3,500 m s. n. m.','city-tour-cusco.webp','Recorre los principales atractivos históricos y arqueológicos de Cusco.','city-tour-cusco'],
+  ['Valle Sagrado VIP','Experiencia VIP','Full Day','Fácil','3,800 m s. n. m.','valle-sagrado-vip.webp','Una experiencia premium por paisajes, arqueología y cultura del Valle Sagrado.','valle-sagrado-vip'],
+  ['Valle Sagrado Tradicional','Cultura & Paisaje','Full Day','Fácil','3,800 m s. n. m.','valle-sagrado-tradicional.webp','Una jornada entre arqueología, paisajes, comunidades y gastronomía andina.','valle-sagrado-tradicional'],
+  ['Machu Picchu','Destino imperdible','Full Day','Fácil','2,430 m s. n. m.','machu-picchu.webp','Una experiencia inolvidable entre tren, Aguas Calientes y la ciudadela inca.','machu-picchu'],
+  ['Laguna Humantay','Trekking','1 día','Alta','4,200 m s. n. m.','laguna-humantay.webp','Una de las rutas naturales más impresionantes de Cusco.','laguna-humantay'],
+  ['Montaña de 7 Colores','Aventura','1 día','Alta','5,200 m s. n. m.','montana-colores.webp','Un paisaje que parece pintado por la naturaleza, en el corazón de los Andes.','montana-7-colores'],
+  ['Montaña de Colores en Cuatrimotos','Aventura + Adrenalina','1 día','Alta','5,200 m s. n. m.','montana-colores-cuatrimotos.webp','Aventura, velocidad y paisajes increíbles de los Andes.','montana-colores-cuatrimotos'],
+  ['Qeswachaka + 4 Lagunas','Cultura & Naturaleza','1 día','Fácil','3,500 m s. n. m.','qeswachaka-4-lagunas.webp','Conoce el puente colgante inca y paisajes de lagunas altoandinas.','qeswachaka-4-lagunas'],
+  ['Waqrapukara','Trekking & Aventura','1 día','Media','4,300 m s. n. m.','waqrapukara.webp','Una aventura a una sorprendente formación rocosa con vistas panorámicas.','waqrapukara'],
+  ['Glaciar de Quelccaya','Alta montaña','1 día','Alta','5,400 m s. n. m.','glaciar-quelccaya.webp','Una jornada de aventura hacia los impresionantes paisajes del glaciar.','glaciar-quelccaya'],
+  ['Pallay Punchu','Trekking & Aventura','1 día','Media','4,900 m s. n. m.','pallay-punchu.webp','Explora una montaña de formas y colores extraordinarios.','pallay-punchu'],
+  ['Cusco Místico','Cultura & Naturaleza','1 día','Fácil','3,600 m s. n. m.','cusco-mistico.webp','Una experiencia diferente entre esculturas, naturaleza y cultura cusqueña.','cusco-mistico'],
+  ['Morada de los Dioses en Cuatrimotos','Aventura + Cultura','1 día','Fácil','3,600 m s. n. m.','morada-dioses-cuatrimotos.webp','Recorre rutas de aventura y paisajes de Cusco en cuatrimoto.','morada-dioses-cuatrimotos'],
+  ['7 Lagunas Ausangate','Trekking & Naturaleza','1 día','Alta','3,500 m s. n. m.','7-lagunas-ausangate.webp','Camina entre lagunas turquesas y paisajes de Ausangate.','7-lagunas-ausangate'],
+  ['City Tour Lima','Cultura & Ciudad','1 día','Fácil','150 m s. n. m.','city-tour-lima.webp','Descubre la Ciudad de los Reyes entre historia, arte y monumentos.','city-tour-lima'],
+  ['Islas Ballestas y Huacachina','Mar & Aventura','1 día','Media','400 m s. n. m.','islas-ballestas-huacachina.webp','Del desierto al mar en una sola jornada con buggys y sandboarding.','islas-ballestas-huacachina'],
+  ['Sobrevuelo Líneas de Nazca','Experiencia aérea','1 día','Alta','520 m s. n. m.','sobrevuelo-lineas-nazca.webp','Contempla los enigmas del desierto desde el aire.','sobrevuelo-lineas-nazca'],
+  ['Valle Sur','Cultura & Historia','1 día','Alta','3,500 m s. n. m.','valle-sur.webp','Descubre destinos históricos y culturales al sur de Cusco.','valle-sur']
+].map(([name,label,duration,difficulty,altitude,image,desc,slug]) => ({name,label,duration,difficulty,altitude,image,desc,slug,message:`Hola, WAYNA INKA PERÚ AGENCY. Quiero información y disponibilidad para el tour ${name}. ¿Me pueden ayudar, por favor?`}));
+function waLink(message) { return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`; }
+function categories(tour) { const text = `${tour.name} ${tour.label}`.toLowerCase(); const result = ['full-day']; if (/cusco|valle|qeswachaka|místico|morada|sur|machu/.test(text)) result.push('cultura'); if (/aventura|montaña|waqrapukara|glaciar|pallay|cuatrimotos/.test(text)) result.push('aventura'); if (/trekking|humantay|colores|waqrapukara|glaciar|pallay|lagunas/.test(text)) result.push('trekking'); if (/cuatrimotos/.test(text)) result.push('cuatrimotos'); return result; }
+const activeFilters = new Set();
+const grid = document.querySelector('#catalog-grid');
+const search = document.querySelector('#tour-search');
+const count = document.querySelector('#catalog-count');
+function renderCatalog() { const query = (search.value || '').toLowerCase().trim(); const visible = tours.filter(tour => { const tourCategories = categories(tour); const matchesFilters = !activeFilters.size || [...activeFilters].every(filter => filter === 'lima' ? /lima|ballestas|huacachina|nazca|paracas/i.test(`${tour.name} ${tour.desc}`) : tourCategories.includes(filter)); const matchesSearch = !query || `${tour.name} ${tour.label} ${tour.desc}`.toLowerCase().includes(query); return matchesFilters && matchesSearch; }); if (count) count.textContent = `${visible.length} de ${tours.length} tours`; grid.innerHTML = visible.map(tour => `<article class="tour-card"><div class="tour-photo"><img loading="lazy" src="assets/images/${tour.image}" alt="${tour.name}"><span class="tour-label">${tour.label}</span><h2 class="tour-name">${tour.name}</h2></div><div class="tour-body"><div class="tour-meta"><span>${tour.duration}</span><span>${tour.difficulty}</span><span>${tour.altitude}</span></div><p>${tour.desc}</p><div class="tour-actions"><a class="tour-detail-link" href="tours/${tour.slug}.html">Ver experiencia <span class="icon icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a><a class="small-wa" target="_blank" rel="noopener" href="${waLink(tour.message)}">WhatsApp</a></div></div></article>`).join('') || '<p class="catalog-empty">No encontramos tours con esa búsqueda.</p>'; }
+document.querySelectorAll('.catalog-filters input').forEach(input => input.addEventListener('change', () => { if (input.checked) activeFilters.add(input.dataset.catalogFilter); else activeFilters.delete(input.dataset.catalogFilter); renderCatalog(); }));
+document.querySelector('#clear-filters')?.addEventListener('click', () => { activeFilters.clear(); document.querySelectorAll('.catalog-filters input').forEach(input => { input.checked = false; }); renderCatalog(); });
+search.addEventListener('input', renderCatalog);
+document.querySelector('.menu-toggle')?.addEventListener('click', () => document.querySelector('.nav')?.classList.toggle('open'));
+renderCatalog();

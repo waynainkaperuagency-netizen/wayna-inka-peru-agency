@@ -472,12 +472,74 @@ a {
 }
 
 .tour-grid {
+    display: flex;
+    gap: 23px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 4px 22px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none
+}
+
+.tour-grid::-webkit-scrollbar {
+    display: none
+}
+
+.featured-carousel {
+    position: relative;
+    padding: 0 22px
+}
+
+.featured-carousel .tour-grid {
+    scroll-behavior: smooth
+}
+
+.carousel-control {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    width: 54px;
+    height: 54px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 23px
+    place-items: center;
+    border: 1px solid #d9dee3;
+    border-radius: 50%;
+    background: var(--navy);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 7px 18px #06173320;
+    transform: translateY(-50%);
+    transition: .2s
+}
+
+.carousel-control:hover {
+    background: var(--gold);
+    color: var(--navy);
+    transform: translateY(-50%) scale(1.05)
+}
+
+.carousel-control svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8
+}
+
+.carousel-prev {
+    left: 0
+}
+
+.carousel-next {
+    right: 0
 }
 
 .tour-card {
+    flex: 0 0 335px;
+    scroll-snap-align: start;
     background: #fff;
     border: 1px solid #e9e7e0;
     box-shadow: 0 8px 27px #0617330c;
@@ -497,8 +559,7 @@ a {
 }
 
 .catalog {
-    margin-top: 70px;
-    padding-top: 55px;
+    background: #f8f5ed;
     border-top: 1px solid #dfe3e5
 }
 
@@ -513,6 +574,10 @@ a {
 .catalog-head h3 {
     margin: 0;
     font-size: 28px
+}
+
+.catalog .tour-grid {
+    padding-bottom: 8px
 }
 
 .catalog-head input {
@@ -551,6 +616,38 @@ a {
 .catalog-empty {
     color: var(--gray);
     grid-column: 1 / -1
+}
+
+/* Shared visual language for framed elements. */
+.tour-card,
+.tip-card,
+.catalog-filters,
+.intro-photo,
+.dest,
+.button,
+.tour-filter,
+.catalog-category,
+.catalog-toolbar input,
+.catalog-page .catalog-toolbar input,
+.catalog-page .catalog-filters,
+.claims input,
+.claims select,
+.claims textarea,
+.side,
+.modal-box {
+    border-radius: 35px
+}
+
+.tour-label,
+.photo-note,
+.nav-cta {
+    border-radius: 35px
+}
+
+.tour-photo,
+.modal-hero,
+.machu {
+    border-radius: inherit
 }
 
 .tour-photo {
@@ -919,7 +1016,7 @@ a {
 .final-cta {
     padding: 130px max(5vw, 24px);
     color: #fff;
-    background: linear-gradient(90deg, #011a39e8, #011a3975), url('assets/images/city-tour-lima.webp') center/cover
+    background: linear-gradient(90deg, #011a39e8, #011a3975), url('assets/images/machu-picchu.webp') center/cover
 }
 
 .final-cta>div {
@@ -1058,7 +1155,8 @@ footer {
 .back-top.visible {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0)
+    transform: translateY(0);
+    transform: translateX(-5px)
 }
 
 .back-top svg {
@@ -1199,7 +1297,7 @@ footer {
 .modal-close {
     position: absolute;
     z-index: 2;
-    right: 13px;
+    right: 12px;
     top: 12px;
     width: 34px;
     height: 34px;
@@ -1482,13 +1580,35 @@ footer {
         grid-column: span 2
     }
 
-    .tour-grid,
     .quotes {
         grid-template-columns: 1fr
     }
 
     .tour-photo {
         height: 255px
+    }
+
+    .tour-grid {
+        gap: 14px;
+        padding: 4px 0 18px
+    }
+
+    .tour-card {
+        flex-basis: min(84vw, 335px)
+    }
+
+    .featured-carousel {
+        padding: 0 10px
+    }
+
+    .featured-carousel .tour-grid {
+        padding-right: 18px;
+        touch-action: pan-x;
+        -webkit-overflow-scrolling: touch
+    }
+
+    .carousel-control {
+        display: none
     }
 
     .machu-inner {

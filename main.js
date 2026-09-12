@@ -47,16 +47,28 @@ const tourPages = {
   'City Tour Cusco':'city-tour-cusco','Valle Sagrado VIP':'valle-sagrado-vip','Valle Sagrado Tradicional':'valle-sagrado-tradicional','Machu Picchu':'machu-picchu','Laguna Humantay':'laguna-humantay','Montaña de 7 Colores':'montana-7-colores','Montaña de Colores en Cuatrimotos':'montana-colores-cuatrimotos','Qeswachaka + 4 Lagunas':'qeswachaka-4-lagunas','Waqrapukara':'waqrapukara','Glaciar de Quelccaya':'glaciar-quelccaya','Pallay Punchu':'pallay-punchu','Cusco Místico':'cusco-mistico','Morada de los Dioses en Cuatrimotos':'morada-dioses-cuatrimotos','7 Lagunas Ausangate':'7-lagunas-ausangate','City Tour Lima':'city-tour-lima','Islas Ballestas y Huacachina':'islas-ballestas-huacachina','Sobrevuelo Líneas de Nazca':'sobrevuelo-lineas-nazca','Valle Sur':'valle-sur'
 };
 function renderTours(filter = 'all') {
-  const availableTours = filter === 'all' ? tours.slice(0, 6) : tours;
+  const availableTours = tours;
   const visibleTours = availableTours.map((tour, index) => ({ tour, index })).filter(({ tour }) => filter === 'all' || getTourCategories(tour).includes(filter));
   grid.innerHTML = visibleTours.map(({ tour: t }) => `<article class="tour-card reveal show"><div class="tour-photo"><img loading="lazy" src="${t.image}" alt="${t.name}, tour en Cusco"><span class="tour-label">${t.label}</span><h3 class="tour-name">${t.name}</h3></div><div class="tour-body"><div class="tour-meta"><span>${t.duration}</span><span>${t.difficulty}</span><span>${t.altitude}</span></div><p>${t.desc}</p><div class="tour-actions"><a class="tour-detail-link" href="tours/${tourPages[t.name]}.html">Ver experiencia <span class="icon icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a><a class="small-wa" target="_blank" href="${waLink(t.message)}">WhatsApp</a></div></div></article>`).join('');
 }
 renderTours();
-const heroImages = ['assets/images/machu-picchu.webp', 'assets/images/city-tour-lima.webp'];
-let heroIndex = 0;
+const heroImages = ['assets/images/machu-picchu.webp'];
 const heroImage = document.querySelector('#hero-image');
-function rotateHero() { if (!heroImage) return; heroImage.classList.add('is-changing'); setTimeout(() => { heroIndex = (heroIndex + 1) % heroImages.length; heroImage.style.backgroundImage = `url('${heroImages[heroIndex]}')`; heroImage.classList.remove('is-changing'); }, 350); }
-if (heroImage) { heroImage.style.backgroundImage = `url('${heroImages[0]}')`; window.setInterval(rotateHero, 6500); }
+if (heroImage) heroImage.style.backgroundImage = `url('${heroImages[0]}')`;
+const featuredGrid = document.querySelector('#tour-grid');
+const featuredCards = () => featuredGrid?.querySelectorAll('.tour-card') || [];
+let featuredIndex = 0;
+function moveFeatured(direction) {
+  const cards = featuredCards();
+  if (!cards.length || !featuredGrid) return;
+  if (direction > 0 && featuredIndex >= cards.length - 1) featuredIndex = 0;
+  else if (direction < 0 && featuredIndex <= 0) featuredIndex = cards.length - 1;
+  else featuredIndex += direction;
+  const card = cards[featuredIndex];
+  featuredGrid.scrollTo({ left: card.offsetLeft - featuredGrid.offsetLeft, behavior: 'smooth' });
+}
+document.querySelector('#featured-prev')?.addEventListener('click', () => moveFeatured(-1));
+document.querySelector('#featured-next')?.addEventListener('click', () => moveFeatured(1));
 const catalog = document.querySelector('#catalogo');
 const catalogGrid = document.querySelector('#catalog-grid');
 const catalogSearch = document.querySelector('#tour-search');
