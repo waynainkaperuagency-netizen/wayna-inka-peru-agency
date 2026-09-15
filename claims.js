@@ -40,7 +40,7 @@ function setupClaimsBook() {
 
 function setupPaymentMethods() {
   const paymentMarkup = `<div class="payment-methods" aria-label="Métodos de pago aceptados">
-    <span class="payment-title">Pago seguro</span>
+    <span class="payment-title">Métodos de pago</span>
     <span class="payment-logo visa" aria-label="Visa"><svg viewBox="0 0 48 24" role="img"><text x="4" y="17">VISA</text></svg></span>
     <span class="payment-logo mastercard" aria-label="Mastercard"><svg viewBox="0 0 48 24" role="img"><circle cx="20" cy="12" r="8"/><circle cx="28" cy="12" r="8"/></svg></span>
     <span class="payment-logo amex" aria-label="American Express"><svg viewBox="0 0 48 24" role="img"><text x="4" y="15">AMEX</text></svg></span>
