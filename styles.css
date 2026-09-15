@@ -1871,3 +1871,45 @@ footer {
         padding: 25px 20px
     }
 }
+
+.esnna-page,
+.terms-page,
+.privacy-page {
+    overflow-x: hidden
+}
+
+.esnna-shell,
+.terms-shell,
+.privacy-shell,
+.esnna-content,
+.terms-content,
+.privacy-content {
+    min-width: 0;
+    overflow-wrap: anywhere
+}
+
+@media(max-width:720px) {
+    .esnna-main,
+    .terms-main,
+    .privacy-main {
+        width: 100%;
+        padding: 34px 14px 60px
+    }
+
+    .esnna-shell,
+    .terms-shell,
+    .privacy-shell {
+        width: 100%;
+        padding: 24px 18px
+    }
+
+    .esnna-content p,
+    .esnna-content li,
+    .terms-content p,
+    .terms-content li,
+    .privacy-content p,
+    .privacy-content li {
+        max-width: 100%;
+        overflow-wrap: anywhere
+    }
+}
