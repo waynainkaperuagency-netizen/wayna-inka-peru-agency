@@ -1913,3 +1913,26 @@ footer {
         overflow-wrap: anywhere
     }
 }
+
+html { width: 100%; max-width: 100%; overflow-x: hidden; }
+@media(max-width:850px) {
+    .esnna-page .header,
+    .terms-page .header,
+    .privacy-page .header {
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    .esnna-page .nav,
+    .terms-page .nav,
+    .privacy-page .nav {
+        max-width: 85vw;
+        right: -100%;
+    }
+
+    .esnna-page .nav.open,
+    .terms-page .nav.open,
+    .privacy-page .nav.open {
+        right: 0;
+    }
+}
