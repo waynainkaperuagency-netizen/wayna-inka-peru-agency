@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = '51927895331';
+const WHATSAPP_NUMBER = '51950160488';
 const tours = [
   ['City Tour Cusco','Cultura & Historia','1 día','Fácil','3,500 m s. n. m.','city-tour-cusco.webp','Recorre los principales atractivos históricos y arqueológicos de Cusco.','city-tour-cusco'],
   ['Valle Sagrado VIP','Experiencia VIP','Full Day','Fácil','3,800 m s. n. m.','valle-sagrado-vip.webp','Una experiencia premium por paisajes, arqueología y cultura del Valle Sagrado.','valle-sagrado-vip'],

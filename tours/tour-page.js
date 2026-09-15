@@ -1,4 +1,4 @@
-const WHATSAPP = '51927895331';
+const WHATSAPP = '51950160488';
 const defaultMessage = 'Hola, WAYNA INKA PER? AGENCY. Estoy interesado en este tour y quisiera recibir informaci?n.';
 const tours = {
   'city-tour-cusco': ['City Tour Cusco','Cultura & Historia','1 d?a','F?cil','3,500 m s. n. m.','city-tour-cusco.png','Recorre los principales atractivos hist?ricos y arqueol?gicos de Cusco, combinando ciudad, cultura andina y vestigios incas.','Cusco, Qorikancha, Sacsayhuam?n, Qenqo, Puca Pucara y Tambomachay'],
@@ -125,8 +125,8 @@ const footerMarkup = `
     </div>
     <div>
       <h3>Contacto</h3>
-      <a href="mailto:info@waynainka.pe">info@waynainka.pe</a>
-      <p>Av. El Sol 123, Cusco, Per?<br>+51 965 613 536</p>
+      <a href="mailto:waynainkaperuagency@gmail.com">waynainkaperuagency@gmail.com</a>
+      <p>+51 950 160 488</p>
       <a class="js-wa" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(defaultMessage)}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
       <div class="social">
         <a aria-label="Instagram" target="_blank" href="https://www.instagram.com/waynainkaperuagency/"><svg class="social-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.3 6.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg></a>
@@ -166,8 +166,8 @@ const structuredData = {
   provider: {
     '@type': 'TravelAgency',
     name: 'WAYNA INKA PER? AGENCY',
-    telephone: '+51 927 895 331',
-    email: 'info@waynainka.pe'
+    telephone: '+51 950 160 488',
+    email: 'waynainkaperuagency@gmail.com'
   },
   itinerary: places.split(', ').map((place, index) => ({
     '@type': 'TouristAttraction',

@@ -1,4 +1,4 @@
-﻿const WHATSAPP_NUMBER = '51927895331';
+const WHATSAPP_NUMBER = '51950160488';
 const defaultMessage = 'Hola, WAYNA INKA PERÚ AGENCY. Estoy interesado en uno de sus tours y quisiera recibir información.';
 const tours = [
   { name: 'City Tour Cusco', label: 'Cultura & Historia', duration: '1 día', difficulty: 'Fácil', altitude: '3,500 m s. n. m.', image: 'assets/images/city-tour-cusco.png', desc: 'Recorre los principales atractivos históricos y arqueológicos de Cusco.', places: 'Cusco, Qorikancha, Sacsayhuamán, Qenqo, Puca Pucara y Tambomachay' },
