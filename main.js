@@ -82,7 +82,7 @@ document.querySelectorAll('.tour-filter').forEach(button => button.addEventListe
   renderTours(button.dataset.filter);
 }));
 const faqList = document.querySelector('#faq-list');
-faqList.innerHTML = faq.map(([q, a]) => `<article class="faq-item"><button class="faq-question" aria-expanded="false">${q}<b>+</b></button><div class="faq-answer"><p>${a}</p></div></article>`).join('');
+if (faqList) faqList.innerHTML = faq.map(([q, a]) => `<article class="faq-item"><button class="faq-question" aria-expanded="false">${q}<b>+</b></button><div class="faq-answer"><p>${a}</p></div></article>`).join('');
 const faqSchema = document.createElement('script');
 faqSchema.type = 'application/ld+json';
 faqSchema.textContent = JSON.stringify({
@@ -96,14 +96,20 @@ faqSchema.textContent = JSON.stringify({
 });
 document.head.appendChild(faqSchema);
 document.querySelectorAll('.faq-question').forEach(button => button.addEventListener('click', () => { const item = button.parentElement; document.querySelectorAll('.faq-item.open').forEach(open => { if (open !== item) { open.classList.remove('open'); open.querySelector('button').setAttribute('aria-expanded', 'false') } }); item.classList.toggle('open'); button.setAttribute('aria-expanded', item.classList.contains('open')); }));
-const header = document.querySelector('#header'); window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 25));
+const header = document.querySelector('#header');
+if (header) window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 25), { passive: true });
 const backTop = document.querySelector('.back-top');
 window.addEventListener('scroll', () => backTop?.classList.toggle('visible', window.scrollY > 420), { passive: true });
-const menu = document.querySelector('.nav'), toggle = document.querySelector('.menu-toggle'); toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open')); document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : ''; }); menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '' }));
+backTop?.addEventListener('click', event => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+const menu = document.querySelector('.nav'), toggle = document.querySelector('.menu-toggle');
+if (menu && toggle) {
+  toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open')); document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : ''; });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '' }));
+}
 const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); observer.unobserve(e.target) } }), { threshold: .12 }); document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 const tourModal = document.querySelector('#tour-modal');
 function showTour(i) { const t = tours[i]; document.querySelector('#tour-detail').innerHTML = `<div class="modal-hero"><img src="${t.image}" alt="${t.name}"><h2>${t.name}</h2></div><div class="detail-copy"><div class="detail-meta"><span>Duración · ${t.duration}</span><span>Altitud · ${t.altitude}</span><span>Dificultad · ${t.difficulty}</span></div><h3>Descripción</h3><p>${t.desc}</p><h3>Lugares a visitar</h3><p>${t.places}</p><h3>Itinerario</h3><p>La ruta y los horarios se coordinan para tu experiencia. Te compartiremos el detalle actualizado según tu fecha de viaje.</p><h3>¿Qué incluye?</h3><ul><li>Coordinación previa de tu experiencia.</li><li>Acompañamiento según el recorrido seleccionado.</li><li>Información actualizada antes de viajar.</li></ul><h3>Recomendaciones</h3><p>Lleva ropa adecuada para el clima, agua, protector solar y consulta con nosotros cualquier requerimiento particular.</p><a class="button navy" target="_blank" href="${waLink(t.message)}">Consultar por WhatsApp <span class="icon icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a></div>`; openModal(tourModal); }
-grid.addEventListener('click', e => { const btn = e.target.closest('[data-tour]'); if (btn) showTour(btn.dataset.tour) });
+grid?.addEventListener('click', e => { const btn = e.target.closest('[data-tour]'); if (btn) showTour(btn.dataset.tour) });
 function openModal(modal) { modal.classList.add('visible'); document.body.style.overflow = 'hidden'; modal.querySelector('.modal-close').focus() }; function closeModal(modal) { modal.classList.remove('visible'); document.body.style.overflow = '' }; document.querySelectorAll('.modal').forEach(m => { m.addEventListener('click', e => { if (e.target === m || e.target.closest('.modal-close')) closeModal(m) }) });
-document.querySelector('#claims-open').addEventListener('click', () => openModal(document.querySelector('#claims-modal'))); document.querySelector('#claims-form').addEventListener('submit', e => { e.preventDefault(); e.target.hidden = true; document.querySelector('.form-message').hidden = false }); document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.querySelectorAll('.modal.visible').forEach(closeModal); menu.classList.remove('open'); document.body.style.overflow = '' } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.querySelectorAll('.modal.visible').forEach(closeModal); menu?.classList.remove('open'); document.body.style.overflow = '' } });
 

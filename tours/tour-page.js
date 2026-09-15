@@ -57,14 +57,14 @@ if (topHeader) {
   topHeader.id = 'header';
   topHeader.innerHTML = `
     <div class="top-row">
-      <div class="brand">
+      <a class="brand" href="../index.html#inicio" aria-label="WAYNA INKA PERÚ AGENCY, inicio">
         <img class="brand-logo" src="../assets/images/wayna-inka-logo.png" alt="WAYNA INKA PERÚ AGENCY">
-      </div>
+      </a>
       <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><i></i><i></i><i></i></button>
       <nav class="nav" aria-label="Navegacion principal">
         <a href="../index.html#inicio">Inicio</a>
         <a href="../index.html#tours">Tours</a>
-        <a class="soon-link" href="../index.html#catalogo">Paquetes <small>Proximamente</small></a>
+        <a class="soon-link" href="../tours.html">Paquetes <small>Ver catálogo</small></a>
         <a href="../index.html#machu-picchu">Machu Picchu</a>
         <a href="../index.html#nosotros">Nosotros</a>
         <a href="../index.html#faq">FAQ</a>
@@ -118,7 +118,7 @@ const footerMarkup = `
       <h3>Información</h3>
       <a href="../index.html#nosotros">Nosotros</a>
       <a href="../index.html#faq">Preguntas frecuentes</a>
-      <a href="../proteccion-datos.html">Protecci?n de datos</a>
+      <a href="../proteccion-datos.html">Protección de datos</a>
       <a href="../esnna.html">ESNNA</a>
       <a href="../terminos.html">Términos y condiciones</a>
       <button class="plain-btn" id="claims-open">Libro de reclamaciones</button>
@@ -142,12 +142,16 @@ const footerMarkup = `
 `;
 
 document.body.insertAdjacentHTML('beforeend', footerMarkup);
+const claimsScript = document.createElement('script');
+claimsScript.src = '../claims.js';
+document.body.appendChild(claimsScript);
 
 const backTop = document.querySelector('.back-top');
 if (backTop) {
   const toggleBackToTop = () => backTop.classList.toggle('visible', window.scrollY > 280);
   toggleBackToTop();
   window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  backTop.addEventListener('click', event => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 }
 
 const whatsappButton = document.querySelector('.whatsapp');
@@ -179,4 +183,4 @@ const schemaScript = document.createElement('script');
 schemaScript.type = 'application/ld+json';
 schemaScript.textContent = JSON.stringify(structuredData);
 document.head.appendChild(schemaScript);
-document.querySelector('#tour-page').innerHTML = `<section class="hero" style="background-image:url('../assets/images/${heroImage}')"><div><p class="eyebrow">${label}</p><h1>${name}</h1><p>Una experiencia auténtica por el Perú.</p></div></section><section class="content"><div><h2>Descubre ${name}</h2><p>${description}</p><div class="facts"><span><b>Duraci?n:</b> ${duration}</span><span><b>Dificultad:</b> ${difficulty}</span><span><b>Altitud máxima:</b> ${altitude}</span></div><h2>Ruta de la experiencia</h2><div class="route">${route}</div><div class="guide-grid"><section><h3 class="good">Incluye</h3><ul>${includes}</ul></section><section><h3 class="no">No incluye</h3><ul>${excludes}</ul></section></div><h2>Recomendaciones</h2><p>Lleva ropa adecuada para el clima, agua, protector solar y consulta con nuestro equipo cualquier requerimiento especial antes de viajar. Para rutas de altura, considera uno o dos días de aclimatación en Cusco.</p></div><aside class="side"><p class="eyebrow">WAYNA INKA PERÚ AGENCY</p><h2>¿Quieres vivir esta experiencia?</h2><p>Consulta disponibilidad, itinerario y detalles para tu fecha de viaje.</p><a class="button" target="_blank" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hola, WAYNA INKA PERÚ AGENCY. Quiero información y disponibilidad para el tour ${name}. ¿Me pueden ayudar, por favor?`)}">Consultar por WhatsApp</a></aside></section>`;
+document.querySelector('#tour-page').innerHTML = `<section class="hero" style="background-image:url('../assets/images/${heroImage}')"><div><p class="eyebrow">${label}</p><h1>${name}</h1><p>Una experiencia auténtica por el Perú.</p></div></section><section class="content"><div><h2>Descubre ${name}</h2><p>${description}</p><div class="facts"><span><b>Duración:</b> ${duration}</span><span><b>Dificultad:</b> ${difficulty}</span><span><b>Altitud máxima:</b> ${altitude}</span></div><h2>Ruta de la experiencia</h2><div class="route">${route}</div><div class="guide-grid"><section><h3 class="good">Incluye</h3><ul>${includes}</ul></section><section><h3 class="no">No incluye</h3><ul>${excludes}</ul></section></div><h2>Recomendaciones</h2><p>Lleva ropa adecuada para el clima, agua, protector solar y consulta con nuestro equipo cualquier requerimiento especial antes de viajar. Para rutas de altura, considera uno o dos días de aclimatación en Cusco.</p></div><aside class="side"><p class="eyebrow">WAYNA INKA PERÚ AGENCY</p><h2>¿Quieres vivir esta experiencia?</h2><p>Consulta disponibilidad, itinerario y detalles para tu fecha de viaje.</p><a class="button" target="_blank" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hola, WAYNA INKA PERÚ AGENCY. Quiero información y disponibilidad para el tour ${name}. ¿Me pueden ayudar, por favor?`)}">Consultar por WhatsApp</a></aside></section>`;

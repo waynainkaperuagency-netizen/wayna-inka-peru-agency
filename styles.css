@@ -437,7 +437,8 @@ a {
 
 .split>p {
     max-width: 310px;
-    color: var(--gray)
+    color: var(--gray);
+    text-align: justify
 }
 
 .reasons {
@@ -761,7 +762,8 @@ a {
 .machu-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, #011a39e8, #011a3970), url('assets/images/machu-picchu.webp') center/cover
+    background: linear-gradient(90deg, #011a39e8, #011a3970), url('assets/images/machu-picchu-2.webp') center/cover no-repeat;
+    background-attachment: fixed
 }
 
 .machu-inner {
@@ -1026,7 +1028,8 @@ a {
 .final-cta {
     padding: 130px max(5vw, 24px);
     color: #fff;
-    background: linear-gradient(90deg, #011a39e8, #011a3975), url('assets/images/machu-picchu.webp') center/cover
+    background: linear-gradient(90deg, #011a39e8, #011a3975), url('assets/images/city-tour-lima.webp') center/cover no-repeat;
+    background-attachment: fixed
 }
 
 .final-cta>div {
@@ -1556,10 +1559,32 @@ footer {
     margin-bottom: 24px
 }
 
+.claims-intro {
+    color: var(--gray);
+    font-size: 12px;
+    margin-bottom: 20px
+}
+
 .claims form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 11px
+}
+
+.claims form[hidden] {
+    display: none
+}
+
+.claims-fields {
+    display: contents
+}
+
+.claims label {
+    display: grid;
+    gap: 6px;
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 800
 }
 
 .claims input,
@@ -1575,6 +1600,23 @@ footer {
     min-height: 100px
 }
 
+.claims form > label:not(.claims-consent) {
+    grid-column: span 2
+}
+
+.claims-consent {
+    display: flex !important;
+    grid-column: span 2;
+    align-items: center;
+    color: var(--gray) !important;
+    font-weight: 500 !important
+}
+
+.claims-consent input {
+    width: 16px;
+    height: 16px
+}
+
 .claims button {
     width: max-content
 }
@@ -1584,6 +1626,70 @@ footer {
     color: var(--green);
     font-size: 12px;
     font-weight: 700
+}
+
+.form-message strong,
+.form-message span {
+    display: block
+}
+
+.form-message span {
+    margin-top: 5px;
+    color: var(--gray);
+    font-weight: 500
+}
+
+.payment-methods {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    vertical-align: middle
+}
+
+.payment-title {
+    margin-right: 7px;
+    color: #c0cad6;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em
+}
+
+.payment-logo {
+    width: 42px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: #f4f6f8;
+    color: #123b73;
+    font: 900 10px Arial, sans-serif;
+    overflow: hidden
+}
+
+.payment-logo svg { width: 100%; height: 100%; display: block }
+.payment-logo text { font: 900 10px Arial, sans-serif; letter-spacing: -.08em }
+.payment-logo.visa text { font-style: italic; fill: #123b73 }
+.payment-logo.mastercard { background: #f7f7f7 }
+.payment-logo.mastercard circle:first-child { fill: #eb001b; opacity: .9 }
+.payment-logo.mastercard circle:last-child { fill: #f79e1b; opacity: .9 }
+.payment-logo.amex { background: #0876b9 }
+.payment-logo.amex text { fill: #fff; font-size: 7px; letter-spacing: 0 }
+.payment-logo.paypal text { fill: #1264a3; font-size: 9px; letter-spacing: -.1em }
+
+.copyright {
+    max-width: var(--max);
+    margin: 34px auto 0;
+    padding-top: 18px;
+    border-top: 1px solid #ffffff1c;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: #8391a1;
+    font-size: 10px
 }
 
 .reveal {
@@ -1834,6 +1940,16 @@ footer {
 
     .claims {
         padding: 30px 22px
+    }
+
+    .copyright {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px
+    }
+
+    .payment-methods {
+        margin-left: 0
     }
 
     .claims form {

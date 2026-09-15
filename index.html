@@ -1,8 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>WAYNA INKA PERÚ AGENCY | Tours en Cusco, Machu Picchu y Perú</title>
   <meta name="description"
@@ -171,7 +172,7 @@
     <nav class="nav" aria-label="Navegación principal">
       <a href="#inicio">Inicio</a>
       <a href="#tours">Tours</a>
-      <a class="soon-link" href="#catalogo">Paquetes <small>Próximamente</small></a>
+      <a class="soon-link" href="tours.html">Paquetes <small>Ver catálogo</small></a>
       <a href="#machu-picchu">Machu Picchu</a>
       <!-- <a href="#destinos">Experiencias</a> -->
       <a href="#nosotros">Nosotros</a>
@@ -186,7 +187,7 @@
       <div class="hero-shade"></div>
       <div class="hero-content">
         <p class="eyebrow light">WAYNA INKA PERÚ AGENCY · Cusco</p>
-        <h1>Viaja por el Perú<br><em>como nunca antes</em></h1>
+        <h1>Tu próxima aventura<br><em>en Perú empieza aquí</em></h1>
         <p class="hero-copy">Experiencias auténticas por Cusco, Machu Picchu, Lima y los destinos más increíbles del Perú.</p>
         <div class="actions"><a class="button gold" href="#tours">Ver tours <span class="icon icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a><a
             class="button outline js-wa" href="#">Hablar por WhatsApp</a></div>
@@ -240,7 +241,7 @@
       <div class="section-head split reveal">
         <div>
           <p class="eyebrow">Viajes que se quedan contigo</p>
-          <h2>Explora nuestros<br><em>tours</em></h2>
+          <h2>Explora nuestros<br><em>tours</em><br></h2>
         </div>
         <p>Del corazón de Cusco a las montañas más impresionantes de los Andes.</p>
       </div>
@@ -284,19 +285,19 @@
       <div class="machu-inner">
         <p class="eyebrow light">El destino que transforma</p>
         <h2>Machu Picchu<br><em>te espera</em></h2>
-        <p>Desde una escapada de un día hasta experiencias de varios días, descubre distintas maneras de conocer una de
-          las maravillas más impresionantes del mundo.</p>
+        <p>Vive Machu Picchu en un tour de día completo desde Cusco, con traslados coordinados, tren, guía profesional e
+          ingreso a la ciudadela.</p>
         <div class="machu-options">
           <div><b>01</b>
-            <h3>Machu Picchu 1 día</h3><span>Para viajeros con poco tiempo.</span>
+            <h3>Salida desde Cusco</h3><span>Traslado coordinado y viaje en tren de ida y retorno.</span>
           </div>
           <div><b>02</b>
-            <h3>Machu Picchu 2 días</h3><span>Una experiencia más tranquila.</span>
+            <h3>Visita guiada</h3><span>Recorre la ciudadela con guía profesional.</span>
           </div>
           <div><b>03</b>
-            <h3>Cusco + Valle + Machu Picchu</h3><span>Para conocer más de la región.</span>
+            <h3>Ingreso incluido</h3><span>Incluye entrada a Machu Picchu y bus Consettur.</span>
           </div>
-        </div><a href="#tours" class="button gold">Planea tu experiencia <span class="icon icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a>
+        </div><a href="tours/machu-picchu.html" class="button gold">Ver tour Machu Picchu <span class="icon icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </section>
     <!-- Sección de experiencias y destinos desactivada temporalmente.
@@ -469,23 +470,8 @@
       <div id="tour-detail"></div>
     </div>
   </div>
-  <div class="modal" id="claims-modal" role="dialog" aria-modal="true" aria-label="Libro de reclamaciones">
-    <div class="modal-box claims"><button class="modal-close" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
-
-      <h2>Libro de reclamaciones</h2>
-      <form id="claims-form"><input required placeholder="Nombre completo"><input required
-          placeholder="Documento de identidad"><input type="email" required placeholder="Email"><input
-          placeholder="Teléfono"><select required>
-          <option value="">Tipo de reclamo o queja</option>
-          <option>Reclamo</option>
-          <option>Queja</option>
-        </select><input type="date" required><textarea required placeholder="Detalle de su solicitud"></textarea><button
-          class="button gold" type="submit">Enviar reclamación</button></form>
-      <p class="form-message" hidden>Esta es una interfaz frontend. La conexión con el sistema real de reclamaciones
-        será implementada posteriormente.</p>
-    </div>
-  </div>
   <script src="main.js"></script>
+  <script src="claims.js"></script>
 </body>
 
 </html>
