@@ -173,7 +173,7 @@ a {
     opacity: .9
 }
 
-.nav>a:hover {
+.nav>a:not(.nav-cta):hover {
     color: var(--gold)
 }
 
@@ -197,6 +197,11 @@ a {
     background: var(--gold);
     color: var(--navy);
     font-size: 9px
+}
+
+.nav-cta:hover {
+    background: #efc46b;
+    color: var(--navy)
 }
 
 .menu-toggle {
